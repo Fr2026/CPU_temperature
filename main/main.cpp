@@ -21,7 +21,7 @@ extern "C" void app_main(void)
     temperature_sensor_handle_t temp_handle = NULL;
     ESP_ERROR_CHECK(temperature_sensor_install(&t, &temp_handle));
     temperature_sensor_enable(temp_handle);
-    int time = 0;
+    int count = 1;
 
     while (true)
     {
@@ -29,9 +29,9 @@ extern "C" void app_main(void)
         if (a == 0){
             float tsens_out;
             temperature_sensor_get_celsius(temp_handle, &tsens_out);
-            printf("第%d次 ",time);
+            printf("第%d次 ",count);
             printf("CPU 温度： %.2f °C\n", tsens_out);
-            time++;
+            count++;
         }
         vTaskDelay(100 / portTICK_PERIOD_MS);
     }
